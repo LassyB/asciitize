@@ -1,4 +1,4 @@
-# ASCIITIZE
+# ASCIITIZE (WIP)
 
 Tool to convert images to ascii art.
 
