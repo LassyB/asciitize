@@ -32,12 +32,19 @@ func TestAsciitizer_Asciitize(t *testing.T) {
 			filepath: "testdata/unsupported.txt",
 			wantErr:  errors.New("image: unknown format"),
 		},
+		{
+			name:         "valid image returns no error and outputs ascii art to writer",
+			filepath:     "testdata/valid.jpg",
+			wantErr:      nil,
+			wantContents: "",
+		},
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			output := strings.Builder{}
 			asciitizer := asciitize.NewAsciitizer(
 				&output,
+				asciitize.WithScale(0.1),
 			)
 			err := asciitizer.Asciitize(tc.filepath)
 			assert.Equal(t, tc.wantErr, err)
